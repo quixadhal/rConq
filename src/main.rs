@@ -19,6 +19,7 @@ impl Elevation {
     // To get the integer version, just cast it "as i32".
     fn to_char(&self) -> char {
         match self {
+            // char           *ele = "~#^%-0";
             Elevation::WATER       => '~',
             Elevation::PEAK        => '#',
             Elevation::MOUNTAIN    => '^',
@@ -76,6 +77,288 @@ impl From<Elevation> for i32 {
         e as i32
     }
 }
+
+#[derive(Debug)]
+#[derive(Clone)]
+enum Designation {
+    TOWN,
+    CITY,
+    MINE,
+    FARM,
+    DEVASTATED,
+    GOLDMINE,
+    FORT,
+    RUIN,
+    STOCKADE,
+    CAPITOL,
+    SPECIAL,
+    LUMBERYARD,
+    BLACKSMITH,
+    ROAD,
+    MILL,
+    GRANARY,
+    CHURCH,
+    UNIVERSITY,
+    NONE,
+    BASECAMP,
+	UNKNOWN,
+}
+
+impl Designation {
+    // To get the integer version, just cast it "as i32".
+    fn to_char(&self) -> char {
+        match self {
+            // char           *des = "tcmfx$!&sC?lb+*g=u-P0";
+            Designation::TOWN           => 't',
+            Designation::CITY           => 'c',
+            Designation::MINE           => 'm',
+            Designation::FARM           => 'f',
+            Designation::DEVASTATED     => 'x',
+            Designation::GOLDMINE       => '$',
+            Designation::FORT           => '!',
+            Designation::RUIN           => '&',
+            Designation::STOCKADE       => 's',
+            Designation::CAPITOL        => 'C',
+            Designation::SPECIAL        => '?',
+            Designation::LUMBERYARD     => 'l',
+            Designation::BLACKSMITH     => 'b',
+            Designation::ROAD           => '+',
+            Designation::MILL           => '*',
+            Designation::GRANARY        => 'g',
+            Designation::CHURCH         => '=',
+            Designation::UNIVERSITY     => 'u',
+            Designation::NONE           => '-',
+            Designation::BASECAMP       => 'P',
+            _                           => '0',
+        }
+    }
+    fn to_string(&self) -> String {
+        match self {
+            Designation::TOWN           => "TOWN".to_string(),
+            Designation::CITY           => "CITY".to_string(),
+            Designation::MINE           => "MINE".to_string(),
+            Designation::FARM           => "FARM".to_string(),
+            Designation::DEVASTATED     => "DEVASTATED".to_string(),
+            Designation::GOLDMINE       => "GOLDMINE".to_string(),
+            Designation::FORT           => "FORT".to_string(),
+            Designation::RUIN           => "RUIN".to_string(),
+            Designation::STOCKADE       => "STOCKADE".to_string(),
+            Designation::CAPITOL        => "CAPITOL".to_string(),
+            Designation::SPECIAL        => "SPECIAL".to_string(),
+            Designation::LUMBERYARD     => "LUMBERYARD".to_string(),
+            Designation::BLACKSMITH     => "BLACKSMITH".to_string(),
+            Designation::ROAD           => "ROAD".to_string(),
+            Designation::MILL           => "MILL".to_string(),
+            Designation::GRANARY        => "GRANARY".to_string(),
+            Designation::CHURCH         => "CHURCH".to_string(),
+            Designation::UNIVERSITY     => "UNIVERSITY".to_string(),
+            Designation::NONE           => "NONE".to_string(),
+            Designation::BASECAMP       => "BASECAMP".to_string(),
+            _                           => "UNKNOWN".to_string(),
+        }
+    }
+}
+
+impl fmt::Display for Designation {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.to_string())
+    }
+}
+
+impl From<char> for Designation {
+    fn from(c: char) -> Self {
+        match c {
+            't' => Designation::TOWN           ,
+            'c' => Designation::CITY           ,
+            'm' => Designation::MINE           ,
+            'f' => Designation::FARM           ,
+            'x' => Designation::DEVASTATED     ,
+            '$' => Designation::GOLDMINE       ,
+            '!' => Designation::FORT           ,
+            '&' => Designation::RUIN           ,
+            's' => Designation::STOCKADE       ,
+            'C' => Designation::CAPITOL        ,
+            '?' => Designation::SPECIAL        ,
+            'l' => Designation::LUMBERYARD     ,
+            'b' => Designation::BLACKSMITH     ,
+            '+' => Designation::ROAD           ,
+            '*' => Designation::MILL           ,
+            'g' => Designation::GRANARY        ,
+            '=' => Designation::CHURCH         ,
+            'u' => Designation::UNIVERSITY     ,
+            '-' => Designation::NONE           ,
+            'P' => Designation::BASECAMP       ,
+            _   => Designation::UNKNOWN        ,
+        }
+    }
+}
+
+impl From<Designation> for char {
+    fn from(d: Designation) -> Self {
+        d.to_char()
+    }
+}
+
+impl From<Designation> for String {
+    fn from(d: Designation) -> Self {
+        d.to_string()
+    }
+}
+
+impl From<Designation> for i32 {
+    fn from(d: Designation) -> Self {
+        d as i32
+    }
+}
+
+#[derive(Debug)]
+#[derive(Clone)]
+enum Vegetation {
+    VOLCANO,
+    DESERT,
+    TUNDRA,
+    BARREN,
+    LT_VEG,
+    GOOD,
+    WOOD,
+    FOREST,
+    JUNGLE,
+    SWAMP,
+    ICE,
+    NONE,
+	UNKNOWN,
+}
+
+impl Vegetation {
+    // To get the integer version, just cast it "as i32".
+    fn to_char(&self) -> char {
+        match self {
+            // char           *veg = "vdtblgwfjsi~0";
+            Vegetation::VOLCANO     => 'v',
+            Vegetation::DESERT      => 'd',
+            Vegetation::TUNDRA      => 't',
+            Vegetation::BARREN      => 'b',
+            Vegetation::LT_VEG      => 'l',
+            Vegetation::GOOD        => 'g',
+            Vegetation::WOOD        => 'w',
+            Vegetation::FOREST      => 'f',
+            Vegetation::JUNGLE      => 'j',
+            Vegetation::SWAMP       => 's',
+            Vegetation::ICE         => 'i',
+            Vegetation::NONE        => '~',
+            _                       => '0',
+        }
+    }
+    fn to_string(&self) -> String {
+        match self {
+            Vegetation::VOLCANO     => "VOLCANO".to_string(),
+            Vegetation::DESERT      => "DESERT".to_string(),
+            Vegetation::TUNDRA      => "TUNDRA".to_string(),
+            Vegetation::BARREN      => "BARREN".to_string(),
+            Vegetation::LT_VEG      => "LT VEG".to_string(),
+            Vegetation::GOOD        => "GOOD".to_string(),
+            Vegetation::WOOD        => "WOOD".to_string(),
+            Vegetation::FOREST      => "FOREST".to_string(),
+            Vegetation::JUNGLE      => "JUNGLE".to_string(),
+            Vegetation::SWAMP       => "SWAMP".to_string(),
+            Vegetation::ICE         => "ICE".to_string(),
+            Vegetation::NONE        => "NONE".to_string(),
+            _                       => "UNKNOWN".to_string(),
+        }
+    }
+}
+
+impl fmt::Display for Vegetation {
+    // error[E0277]: `Elevation` doesn't implement `std::fmt::Display`
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.to_string())
+    }
+}
+
+impl From<char> for Vegetation {
+    fn from(c: char) -> Self {
+        match c {
+            'v' => Vegetation::VOLCANO    ,
+            'd' => Vegetation::DESERT     ,
+            't' => Vegetation::TUNDRA     ,
+            'b' => Vegetation::BARREN     ,
+            'l' => Vegetation::LT_VEG     ,
+            'g' => Vegetation::GOOD       ,
+            'w' => Vegetation::WOOD       ,
+            'f' => Vegetation::FOREST     ,
+            'j' => Vegetation::JUNGLE     ,
+            's' => Vegetation::SWAMP      ,
+            'i' => Vegetation::ICE        ,
+            '~' => Vegetation::NONE       ,
+            _   => Vegetation::UNKNOWN    ,
+        }
+    }
+}
+
+impl From<Vegetation> for char {
+    fn from(v: Vegetation) -> Self {
+        v.to_char()
+    }
+}
+
+impl From<Vegetation> for String {
+    fn from(v: Vegetation) -> Self {
+        v.to_string()
+    }
+}
+
+impl From<Vegetation> for i32 {
+    fn from(v: Vegetation) -> Self {
+        v as i32
+    }
+}
+
+#[derive(Debug)]
+struct Sector {
+    designation         : Designation,  // designation of sector
+    altitude            : Elevation,    // sector altitude
+    vegetation          : Vegetation,   // sector vegetation
+    owner               : u8,       // nation id of owner
+    people              : i32,      // civilians in sector
+    i_people            : i16,      // initial civilians in sector
+    jewels              : u8,       // jewel production ability
+    fortress            : u8,       // fortification level; 0 to 12
+    metal               : u8,       // metal produced by sector
+    tradegood           : u8,       // exotic trade goods in sector
+    region              : u8,       // unused, index of region
+    foodstore           : i32,      // food stored in sector
+    jewelstore          : i32,      // jewels stored in sector
+    metalstore          : i32,      // metal stored in sector
+}
+
+impl Default for Sector {
+    fn default() -> Sector {
+        Sector {
+            designation     : Designation::NONE,
+            altitude        : Elevation::WATER,
+            vegetation      : Vegetation::NONE,
+            owner           : 0,
+            people          : 0,
+            i_people        : 0,
+            jewels          : 0,
+            fortress        : 0,
+            metal           : 0,
+            tradegood       : 0,
+            region          : 0,
+            foodstore       : 0,
+            jewelstore      : 0,
+            metalstore      : 0,
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 #[derive(Debug)]
 #[derive(Clone)]
@@ -353,39 +636,6 @@ impl Default for Nation {
 }
 
 #[derive(Debug)]
-struct Sector {
-    designation         : u8,       // designation of sector
-    altitude            : Elevation,       // sector altitude
-    vegetation          : u8,       // sector vegetation
-    owner               : u8,       // nation id of owner
-    people              : i32,      // civilians in sector
-    i_people            : i16,      // initial civilians in sector
-    jewels              : u8,       // jewel production ability
-    fortress            : u8,       // fortification level; 0 to 12
-    metal               : u8,       // metal produced by sector
-    tradegood           : u8,       // exotic trade goods in sector
-    region              : u8,       // unused, index of region
-}
-
-impl Default for Sector {
-    fn default() -> Sector {
-        Sector {
-            designation     : 0,
-            altitude        : Elevation::WATER,
-            vegetation      : 0,
-            owner           : 0,
-            people          : 0,
-            i_people        : 0,
-            jewels          : 0,
-            fortress        : 0, 
-            metal           : 0,
-            tradegood       : 0,
-            region          : 0,
-        }
-    }
-}
-
-#[derive(Debug)]
 struct World {
     mapx        : i16,          // size of world
     mapy        : i16,          // size of world
@@ -402,6 +652,7 @@ struct World {
     w_mil       : i32,          // world military
     w_sctrs     : i32,          // owned sectors in world
     score       : i32,          // world score total
+    karma       : i16,          // overall world alignment
     ntn         : Vec<Nation>,  // not present in original
 }
 
@@ -423,6 +674,7 @@ impl Default for World {
             w_mil       : 0,
             w_sctrs     : 0,
             score       : 0,
+            karma       : 0,
             ntn         : Vec::new(),
         }
     }
